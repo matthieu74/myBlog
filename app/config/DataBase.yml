@@ -1,0 +1,4 @@
+doctrine:
+    dbname: 'myblog'
+    user: 'root'
+    password: ''

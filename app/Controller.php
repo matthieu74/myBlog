@@ -47,6 +47,13 @@ class Controller
             $twig_bridge_dir,
         ));
 		$twig = new \Twig_Environment($loader, array('debug' => true));
+		$twig->addFunction(new \Twig_SimpleFunction('asset', function ($asset) {
+        // implement whatever logic you need to determine the asset path
+
+        return sprintf('http://localhost/myblog/web/%s', ltrim($asset, '/'));
+    }));
+
+    return $twig;
 		return $twig;
 	}
 	

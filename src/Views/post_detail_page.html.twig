@@ -1,0 +1,39 @@
+{% extends "myblog_Layout.html.twig" %}
+
+{% block content %}
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-text">
+                        <span class="name">{{ post.title }}</span>
+                     
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contact Section -->
+    <section id="myblog">
+        <div class="container">
+
+            <div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<p> {{ post.chapo }} <p>
+					<hr class="star-primary">
+					<p>{{ post.textPost }}</p>
+					<p>{{ post.author }}</p>
+					<p> {{ post.dateMaj|date("d/m/y") }} <p>
+				</div>
+            </div>
+			<div class="row">
+                            <div class="form-group col-xs-12">
+                             	<a href="{{ asset('index.php/blog/edit') }}/{{ post.id }}" type="submit" class="btn btn-success btn-lg">Edit</a>
+                            </div>
+                        </div>
+        </div>
+    </section>
+{% endblock %}

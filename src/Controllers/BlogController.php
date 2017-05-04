@@ -29,7 +29,7 @@ class BlogController extends Controller
 					   	'modeBlog' => 1
 						);
 		
-		$templateFile = 'myblog_page.html.twig';
+		$templateFile = 'posts_page.html.twig';
 		$this->renderTwig($twig, $templateFile, $array);
 		
 	}
@@ -49,7 +49,7 @@ class BlogController extends Controller
 					   	'modeBlog' => 1
 						);
 		
-		$templateFile = 'blog_detail_page.html.twig';
+		$templateFile = 'post_detail_page.html.twig';
 		$this->renderTwig($twig, $templateFile, $array);
 	}
 	
@@ -80,7 +80,7 @@ class BlogController extends Controller
 		$array = array('profil' => $myDescription->getTwigArray(),
 					  	'form' => $myForm->createView(),
 					   	'modeBlog' => 1);
-		$templateFile = 'blog_edit_page.html.twig';
+		$templateFile = 'post_edit_page.html.twig';
 		$this->renderTwig($twig, $templateFile, $array);
 		 
 	}
@@ -109,7 +109,7 @@ class BlogController extends Controller
 		$array = array('profil' => $myDescription->getTwigArray(),
 					  	'form' => $myForm->createView(),
 					  	'modeBlog' => 1);
-		$templateFile = 'blog_edit_page.html.twig';
+		$templateFile = 'post_edit_page.html.twig';
 		$this->renderTwig($twig, $templateFile, $array);
 	}
 	

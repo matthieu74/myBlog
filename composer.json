@@ -8,32 +8,21 @@
         }
     },
     "require": {
-		"symfony/config": "~2.8|~3.0",
-        "symfony/http-foundation": "~2.8|~3.0",
-        "symfony/yaml": "~3.0",
-        "symfony/expression-language": "~2.8|~3.0",
-        "symfony/dependency-injection": "~3.0",
-        "doctrine/annotations": "~1.0",
-        "doctrine/common": "~2.2",
-        "psr/log": "~1.0",
-		"symfony/routing": "~3.2",
+		"symfony/config": "^3.2",
+        "symfony/http-foundation": "^3.2",
+        "symfony/yaml": "^3.2",
+        "symfony/expression-language": "^3.2",
+        "symfony/dependency-injection": "^3.2",
+		"symfony/routing": "^3.2",
 		"twig/twig": "~2.3",
-		"symfony/http-kernel" : "~3.2",
-		"symfony/event-dispatcher" : "~2.8|~3.0",
-		"symfony/intl" : "^2.8.18|^3.2.5",
-		"symfony/options-resolver" : "~2.8|~3.0",
-		"symfony/polyfill-mbstring" : "~1.0",
-		"symfony/property-access" : "~2.8|~3.0",
-		"symfony/form": "~3.0",
-        "symfony/validator": "~3.0",
-        "symfony/translation": "~3.0",
-        "symfony/twig-bridge": "~3.0",
-        "symfony/security-csrf": "~3.0",
+		"symfony/form": "^3.2",
+        "symfony/validator": "^3.2",
+        "symfony/translation": "^3.2",
+        "symfony/twig-bridge": "^3.2",
+        "symfony/security-csrf": "^3.2",
 		"swiftmailer/swiftmailer": "~5.4",
 		"doctrine/orm": "^2.5.5",
-		"symfony/asset": "~3.0"
-    },
-	"extra": {
-		"symfony-assets-install": "relative"
-	}
+		"doctrine/annotations": "~1.0",
+        "doctrine/common": "~2.2"
+    }
 }

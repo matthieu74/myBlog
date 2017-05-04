@@ -13,6 +13,7 @@ class Controller
     private $doctrine;
     private $request;
     private $routeName;
+	private $assetPath;
     public function __construct($request, $config, $routeName)
     {
         $this->request = $request;
@@ -26,8 +27,10 @@ class Controller
             'password' => $config["doctrine"]["password"],
             'dbname'   => $config["doctrine"]["dbname"],
         );
-        $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/../src/models/entities"), true);
-        $this->doctrine = EntityManager::create($dbParams, $config);
+        $configDoctrine = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/../src/models/entities"), true);
+        $this->doctrine = EntityManager::create($dbParams, $configDoctrine);
+		
+		$this->assetPath = $config["asset"];
     }
     protected function getRequest()
     {
@@ -47,13 +50,11 @@ class Controller
             $twig_bridge_dir,
         ));
 		$twig = new \Twig_Environment($loader, array('debug' => true));
-		$twig->addFunction(new \Twig_SimpleFunction('asset', function ($asset) {
-        // implement whatever logic you need to determine the asset path
+							$twig->addFunction(new \Twig_SimpleFunction('asset', function ($asset) {
+							// implement whatever logic you need to determine the asset path
+							return sprintf($this->assetPath . '/%s', ltrim($asset, '/'));
+					}));
 
-        return sprintf('http://localhost/myblog/web/%s', ltrim($asset, '/'));
-    }));
-
-    return $twig;
 		return $twig;
 	}
 	

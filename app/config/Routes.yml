@@ -1,5 +1,5 @@
 # Routes.yml
-accueil:
+home:
     path: /
     defaults: { _controller: 'HomeController::showAction' }
     
@@ -10,3 +10,12 @@ blog:
 blogView:
     path: /blog/view/{idblog}
     defaults: { _controller: 'BlogController::showDetailAction' }
+
+
+blogEdit:
+    path: /blog/edit/{idblog}
+    defaults: { _controller: 'BlogController::editAction' }
+
+blogAdd:
+    path: /blog/add
+    defaults: { _controller: 'BlogController::addAction' }

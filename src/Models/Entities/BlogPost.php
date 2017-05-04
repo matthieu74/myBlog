@@ -1,16 +1,10 @@
 <?php
 
 namespace Models\Entities;
-/**
- * Created by PhpStorm.
- * User: perom
- * Date: 22/04/2017
- * Time: 15:26
- */
 
 /**
  * @Entity 
- * @Table(name="BlogPost")
+ * @Table(name="blogpost")
  **/
 class BlogPost
 {
@@ -41,6 +35,19 @@ class BlogPost
      */
     protected $chapo;
 	
+	/**
+     * @var string
+     * @Column(type="string")
+     */
+	private $author;
+	
+	/**
+     * @var string
+     * @Column(type="string")
+     */
+    protected $textPost;
+	
+	
 	public function getId()
 	{
 		return $this->id;
@@ -61,12 +68,47 @@ class BlogPost
 		return $this->chapo;
 	}
 	
-
-	public function getDataSecurisee()
+	public function getAuthor()
 	{
-		$this->name = htmlspecialchars($this->name);
-		$this->message = htmlspecialchars($this->message);
-		$this->emailAddress = str_replace(array("\n","\r",PHP_EOL),'',$this->emailAddress);
+		return $this->author;
+	}
+	
+	public function getTextPost()
+	{
+		return $this->textPost;
+	}
+	
+	public function setTitle($t)
+	{
+		$this->title  =$t;
+	}
+	
+	public function setDateMaj($d)
+	{
+		$this->dateMaj = $d;
+	}
+	
+	public function setChapo($c)
+	{
+		$this->chapo = $c;
+	}
+	
+	public function setAuthor($a)
+	{
+		 $this->author = $a;
+	}
+	
+	public function setTextPost($t)
+	{
+		$this->textPost = $t;
+	}
+
+	public function getSecureData()
+	{
+		$this->title = htmlspecialchars($this->title);
+		$this->chapo = htmlspecialchars($this->chapo);
+		$this->author = htmlspecialchars($this->author);
+		$this->textPost = htmlspecialchars($this->textPost);
 	}
 }
 

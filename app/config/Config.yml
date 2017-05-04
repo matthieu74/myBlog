@@ -1,0 +1,5 @@
+doctrine:
+    dbname: 'myblog'
+    user: 'root'
+    password: ''
+asset: 'http://localhost/myblog/web'

@@ -2,29 +2,31 @@
 
 namespace Controllers;
 
-//twig
-require_once __DIR__.'/../../vendor/autoload.php';
 use Framework\Controller;
+use Framework\FormFactory;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use Models\Presentation\Presentation;
+use Models\Service\PresentationService;
+use Models\Service\BlogPostService;
 use Models\Entities\BlogPost;
+use Models\Form\FormBlogPost;
 
 class BlogController extends Controller
 {
-	
+	private $request;
 	public function showAction()
 	{
 		//Set up the twig engine
         $twig = $this->initTwig();
 		
-		$em = $this->getDoctrine();
-		$blogposts = $em->getRepository('Models\Entities\BlogPost')->findBy(array(),array('dateMaj' => 'DESC'));
+		$bp = new BlogPostService();
+		$blogPosts = $bp->getAllPosts($this->getDoctrine());
 		
-		$myDescription = new Presentation();
+		$myDescription = new PresentationService();
 		$array = array('profil' => $myDescription->getTwigArray(),
 						'title' => 'visit my blog',
-						'blogPosts' => $blogposts,
+						'blogPosts' => $blogPosts,
+					   	'modeBlog' => 1
 						);
 		
 		$templateFile = 'myblog_page.html.twig';
@@ -32,29 +34,83 @@ class BlogController extends Controller
 		
 	}
 
-	public function showDetailAction($id)
+	public function showDetailAction($idBlog)
 	{
 		//Set up the twig engine
         $twig = $this->initTwig();
 		
-		$em = $this->getDoctrine();
-		
-		$idBlog = 2;
-		
-		$postEntete = $em->getRepository('Models\Entities\BlogPost')->findBy(
-								array('id' => $idBlog));
-		$postDetail = $em->getRepository('Models\Entities\PostDetail')->findBy(
-								array('blogpost_idblogpost' => $idBlog));
-		
-		return $this->debugResponse(var_dump($postEntete));
-		$myDescription = new Presentation();
+		$bp = new BlogPostService();
+		$postDetail = $bp->getPostDetail($this->getDoctrine(),$idBlog);
+
+		$myDescription = new PresentationService();
 		$array = array('profil' => $myDescription->getTwigArray(),
 						'title' => 'visit my blog',
 						'post' => $postDetail,
+					   	'modeBlog' => 1
 						);
 		
 		$templateFile = 'blog_detail_page.html.twig';
 		$this->renderTwig($twig, $templateFile, $array);
-		
 	}
+	
+	
+	public function editAction($idBlog)
+	{
+		//Set up the twig engine
+        $twig = $this->initTwig();
+		
+		$bp = new BlogPostService();
+		$postDetail = $bp->getPostDetail($this->getDoctrine(),$idBlog);
+		
+		//Set up the symfony/form engine
+		$formFactory = FormFactory::init($twig);
+
+		//
+		$formMgr = new FormBlogPost();
+        $myForm = $formMgr->createFormEdit($twig, $formFactory, $postDetail);
+		$myForm->handleRequest($this->request);
+		$sendMailMessage = NULL;
+		if ($myForm->isSubmitted() && $myForm->isValid()) {
+			$bp->savePost($this->getDoctrine(),$postDetail);
+			$this->showDetailAction($idBlog);
+			return;
+		}
+		
+		$myDescription = new PresentationService();
+		$array = array('profil' => $myDescription->getTwigArray(),
+					  	'form' => $myForm->createView(),
+					   	'modeBlog' => 1);
+		$templateFile = 'blog_edit_page.html.twig';
+		$this->renderTwig($twig, $templateFile, $array);
+		 
+	}
+	
+	public function addAction()
+	{
+		//Set up the twig engine
+        $twig = $this->initTwig();
+		
+		//Set up the symfony/form engine
+		$formFactory = FormFactory::init($twig);
+
+		//
+		$formMgr = new FormBlogPost();
+        $myForm = $formMgr->createForm($twig, $formFactory);
+		$myForm->handleRequest($this->request);
+		$sendMailMessage = NULL;
+		if ($myForm->isSubmitted() && $myForm->isValid()) {
+			$bp = new BlogPostService();
+			$postDetail = $myForm->getData();
+			$bp->savePost($this->getDoctrine(),$postDetail);
+			$this->showDetailAction($postDetail->getId());
+		}
+		
+		$myDescription = new PresentationService();
+		$array = array('profil' => $myDescription->getTwigArray(),
+					  	'form' => $myForm->createView(),
+					  	'modeBlog' => 1);
+		$templateFile = 'blog_edit_page.html.twig';
+		$this->renderTwig($twig, $templateFile, $array);
+	}
+	
 }

@@ -2,15 +2,13 @@
 
 namespace Controllers;
 
-//twig
-require_once __DIR__.'/../../vendor/autoload.php';
 use Framework\Controller;
 use Framework\FormFactory;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-
-use Models\Presentation\Presentation;
-use Models\Home\FormulaireContact;
+use Models\Service\PresentationService;
+use Models\Service\ContactService;
+use Models\Form\FormContact;
 
 class HomeController extends Controller
 {
@@ -29,18 +27,21 @@ class HomeController extends Controller
 		$formFactory = FormFactory::init($twig);
 
 		//
-		$formulaire = new FormulaireContact();
-        $monFomulaire = $formulaire->createFormulaire($twig, $formFactory);
-		$monFomulaire->handleRequest($this->request);
-		
-		if ($monFomulaire->isSubmitted() && $monFomulaire->isValid()) {
-			$formulaire->sendContact($monFomulaire->getData(),$this->getDoctrine());
+		$formMgr = new FormContact();
+        $myForm = $formMgr->createForm($twig, $formFactory);
+		$myForm->handleRequest($this->request);
+		$sendMailMessage = NULL;
+		if ($myForm->isSubmitted() && $myForm->isValid()) {
+			$contactService = new ContactService();
+			$contactService->sendContact($myForm->getData(),$this->getDoctrine());
+			$sendMailMessage = "Your message has been sent.";
 		}
 		
 		// 
-		$myDescription = new Presentation();
+		$myDescription = new PresentationService();
 		$array = array('profil' => $myDescription->getTwigArray(),
-						'form' => $monFomulaire->createView(),
+						'form' => $myForm->createView(),
+					   	'mailMessage' => $sendMailMessage
             );
 		$templateFile = 'home_page.html.twig';
 		$this->renderTwig($twig, $templateFile, $array);

@@ -1,12 +1,6 @@
 <?php
 
 namespace Models\Entities;
-/**
- * Created by PhpStorm.
- * User: perom
- * Date: 22/04/2017
- * Time: 15:26
- */
 
 /**
  * @Entity 
@@ -85,7 +79,7 @@ class Contact
         $this->name = $name;
     }
 	
-	public function getDataSecurisee()
+	public function getSecureData()
 	{
 		$this->name = htmlspecialchars($this->name);
 		$this->message = htmlspecialchars($this->message);

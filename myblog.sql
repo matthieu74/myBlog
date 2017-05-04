@@ -1,7 +1,6 @@
-DROP DATABASE IF EXISTS myblog ;
-
-CREATE DATABASE myblog ; -- Créer la base de données : myblog
-USE myblog ; 
+DROP DATABASE IF EXISTS myblog ; -- Supprimer la base de données  projet4_Matthieu_Pero
+CREATE DATABASE myblog ; -- Créer la base de données : projet4_Matthieu_Pero
+USE myblog ; -- Indique la BDD à utiliser et dans laquelle on exécute les requêtes.
 
 
 CREATE TABLE contact
@@ -12,22 +11,13 @@ CREATE TABLE contact
 	message BLOB
 ) ENGINE = InnoDB;
 
-CREATE TABLE BlogPost
+CREATE TABLE blogpost -- creation de la table type de statut de la personne
 (
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	title VARCHAR(255) NOT NULL,
-	dateMaj datetime NOT NULL,
-	chapo VARCHAR(255) NOT NULL
-) ENGINE = InnoDB;
-
-CREATE TABLE PostDetail
-(
-	id INT NOT NULL AUTO_INCREMENT,
+	dateMaj datetime not null,
+	chapo VARCHAR(255) NOT NULL,
 	author VARCHAR(255) NOT NULL,
-	textPost BLOB,
-	BlogPost_idBlogPost INT NOT NULL ,
-	PRIMARY KEY (`id`, `BlogPost_idBlogPost`) ,
-  CONSTRAINT `fk_post`
-    FOREIGN KEY (`BlogPost_idBlogPost` )
-    REFERENCES `BlogPost` (`id` )
+    textPost blob
+	
 ) ENGINE = InnoDB;

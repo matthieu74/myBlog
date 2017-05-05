@@ -16,9 +16,11 @@ class App
 		$request = Request::createFromGlobals();
         $route = self::getRoute();
         list($controllerClass,$actionMethod) = explode("::",$route["_controller"]);
+		
         $controllerClass = "\Controllers\\".$controllerClass;
 		
         $controller = new $controllerClass(Request::createFromGlobals(), self::loadConfig(), array_pop($route));
+		
 		array_shift($route); //supp the first element of the route array
         call_user_func_array(array($controller,$actionMethod), $route);
     }

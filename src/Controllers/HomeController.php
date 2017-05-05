@@ -46,5 +46,16 @@ class HomeController extends Controller
 		$templateFile = 'home_page.html.twig';
 		$this->renderTwig($twig, $templateFile, $array);
 	}
+	
+	public function show404Action()
+	{
+		//Set up the twig engine
+        $twig = $this->initTwig();
+		$templateFile = '404_page.html.twig';
+		$myDescription = new PresentationService();
+		$array = array('profil' => $myDescription->getTwigArray(),);
+		$this->renderTwig($twig, $templateFile, $array);
+		
+	}
 }
 ?>

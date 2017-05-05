@@ -19,3 +19,9 @@ blogEdit:
 blogAdd:
     path: /blog/add
     defaults: { _controller: 'BlogController::addAction' }
+
+pageNotFound:
+    path:  /{req}
+    defaults: { _controller: 'HomeController::show404Action' }
+    requirements:
+      req: ".+"

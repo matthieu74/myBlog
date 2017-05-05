@@ -16,7 +16,7 @@ class FormBlogPost
 
     }
 
-    public function createForm($twig, $formFactory)
+    public function createFormAdd($twig, $formFactory)
     {
 		$blogPost = new BlogPost();
         

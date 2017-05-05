@@ -27,7 +27,7 @@ class BlogPost
      * @var datetime
      * @Column(type="datetime")
      */
-    protected $dateMaj;
+    protected $dateUpdate;
 	
 	/**
      * @var string
@@ -58,9 +58,9 @@ class BlogPost
 		return $this->title;
 	}
 	
-	public function getDateMaj()
+	public function getDateUpdate()
 	{
-		return $this->dateMaj;
+		return $this->dateUpdate;
 	}
 	
 	public function getChapo()
@@ -83,9 +83,9 @@ class BlogPost
 		$this->title  =$t;
 	}
 	
-	public function setDateMaj($d)
+	public function setDateUpdate($d)
 	{
-		$this->dateMaj = $d;
+		$this->dateUpdate = $d;
 	}
 	
 	public function setChapo($c)

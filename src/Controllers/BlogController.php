@@ -96,7 +96,7 @@ class BlogController extends Controller
 
 		//
 		$formMgr = new FormBlogPost();
-        $myForm = $formMgr->createForm($twig, $formFactory);
+        $myForm = $formMgr->createFormAdd($twig, $formFactory);
 		$myForm->handleRequest($this->request);
 		$sendMailMessage = NULL;
 		if ($myForm->isSubmitted() && $myForm->isValid()) {

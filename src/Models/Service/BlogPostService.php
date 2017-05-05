@@ -6,7 +6,7 @@ class BlogPostService
 {
 	public function getAllPosts($em)
 	{
-		$query = $em->createQuery('SELECT b.id,b.title, b.dateMaj, b.chapo FROM Models\Entities\blogpost b order by b.dateMaj desc');
+		$query = $em->createQuery('SELECT b.id,b.title, b.dateUpdate, b.chapo FROM Models\Entities\blogpost b order by b.dateUpdate desc');
 		return $query->getResult();
 		
 	}
@@ -21,7 +21,7 @@ class BlogPostService
 	{
 		// save the contact into database
 		$post->getSecureData();
-		$post->setDateMaj(new \DateTime());
+		$post->setDateUpdate(new \DateTime());
 			
 		$em->persist($post);
 		$em->flush();

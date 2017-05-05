@@ -34,4 +34,14 @@ class FormBlogPost
        
         return $form;
     }
+	
+	public function createFormDelete($twig, $formFactory, $blogPost)
+    {
+		
+        $form = $formFactory->createBuilder(BlogPostDeleteType::class, $blogPost)
+            ->getForm();
+       
+        return $form;
+    }
+	
 }

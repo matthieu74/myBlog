@@ -28,6 +28,8 @@
 					<br>
 					<p> {{ post.dateMaj|date("d/m/y") }} </p>
 					<a href="{{ asset('index.php/blog/view') }}/{{ post.id }}">more</a>
+					
+					<a href="{{ asset('index.php/blog/delete') }}/{{ post.id }}">delete</a>
 					<hr class="star-primary">
 				{% endfor %}
 				</div>

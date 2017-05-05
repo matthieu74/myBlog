@@ -26,4 +26,14 @@ class BlogPostService
 		$em->persist($post);
 		$em->flush();
 	}
+	
+	public function deletePost($em,$post)
+	{
+		// save the contact into database
+		
+		$em->remove($post);
+		$em->flush();
+	}
+	
+	
 }

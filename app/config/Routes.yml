@@ -20,6 +20,10 @@ blogAdd:
     path: /blog/add
     defaults: { _controller: 'BlogController::addAction' }
 
+blogDelete:
+    path: /blog/delete/{idblog}
+    defaults: { _controller: 'BlogController::deleteAction' }
+
 pageNotFound:
     path:  /{req}
     defaults: { _controller: 'HomeController::show404Action' }

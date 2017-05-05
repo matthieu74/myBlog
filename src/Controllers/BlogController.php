@@ -108,9 +108,41 @@ class BlogController extends Controller
 		$myDescription = new PresentationService();
 		$array = array('profil' => $myDescription->getTwigArray(),
 					  	'form' => $myForm->createView(),
+					   	'addPost' => 1,
 					  	'modeBlog' => 1);
 		$templateFile = 'post_edit_page.html.twig';
 		$this->renderTwig($twig, $templateFile, $array);
 	}
 	
+	public function deleteAction($idBlog)
+	{
+		//Set up the twig engine
+        $twig = $this->initTwig();
+		
+		$bp = new BlogPostService();
+		$postDetail = $bp->getPostDetail($this->getDoctrine(),$idBlog);
+		
+		//Set up the symfony/form engine
+		$formFactory = FormFactory::init($twig);
+
+		//
+		$formMgr = new FormBlogPost();
+        $myForm = $formMgr->createFormDelete($twig, $formFactory, $postDetail);
+		$myForm->handleRequest($this->request);
+		$sendMailMessage = NULL;
+		if ($myForm->isSubmitted() && $myForm->isValid()) {
+			$bp->deletePost($this->getDoctrine(),$postDetail);
+			$this->showAction();
+			return;
+		}
+		
+		$myDescription = new PresentationService();
+		$array = array('profil' => $myDescription->getTwigArray(),
+					  	'form' => $myForm->createView(),
+					   	'post' => $postDetail,
+					   	'modeBlog' => 1);
+		
+		$templateFile = 'post_delete_page.html.twig';
+		$this->renderTwig($twig, $templateFile, $array);
+	}
 }

@@ -79,6 +79,7 @@ class BlogController extends Controller
 		$myDescription = new PresentationService();
 		$array = array('profil' => $myDescription->getTwigArray(),
 					  	'form' => $myForm->createView(),
+					   	'post' => $postDetail,
 					   	'modeBlog' => 1);
 		$templateFile = 'post_edit_page.html.twig';
 		$this->renderTwig($twig, $templateFile, $array);

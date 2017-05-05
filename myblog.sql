@@ -15,7 +15,7 @@ CREATE TABLE blogpost -- creation de la table type de statut de la personne
 (
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	title VARCHAR(255) NOT NULL,
-	dateMaj datetime not null,
+	dateUpdate datetime not null,
 	chapo VARCHAR(255) NOT NULL,
 	author VARCHAR(255) NOT NULL,
     textPost blob

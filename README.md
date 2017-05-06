@@ -7,7 +7,7 @@ before working on this project, you need :
 php composer.phar update  
   
 now you have to configure your project:  
-myBlog/app/config/Config.yml  
+__myBlog/app/config/Config.yml__  
 doctrine:  
     host: 'localhost' #mysql host address   
     dbname: 'myblog' #the name database  
@@ -16,7 +16,7 @@ doctrine:
 asset: 'http://localhost/myblog/web' #path for css, js and img files  
   
   
-myBlog/app/config/Mailer.yml  
+__myBlog/app/config/Mailer.yml__  
 smtp: 'smtp.gmail.com'  
 port: 587  
 protocole: 'tls'  

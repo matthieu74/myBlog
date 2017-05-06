@@ -16,7 +16,6 @@ class ContactService
 		$mailMessage = 'message from ' . $data->getName() . PHP_EOL .
 							'is mail : ' . $data->getEmailAddress() . PHP_EOL .
 							'the message : ' . PHP_EOL . $data->getMessage(); 
-		return;
 		$sm = MailFactory::create();
 		$message = \Swift_Message::newInstance();
 		$message->setSubject('msg myBlog')

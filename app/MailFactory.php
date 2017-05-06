@@ -7,22 +7,14 @@ use Symfony\Component\Yaml\Yaml;
 
 class MailFactory
 {
-	private $config;
-	
-	public function __construct()
+	static public function create()
 	{
-		$this->config = Yaml::parse(file_get_contents(__DIR__."/Config/mail.yml"));
-
-	}
-	
-	public function create()
-	{
-		
+		$config = Yaml::parse(file_get_contents(__DIR__."/Config/Mailer.yml"));
 		
 		// Create the Transport
-		$transport = \Swift_SmtpTransport::newInstance($this->config['smtp'], intval($this->config['port']), $this->config['protocole'])
-		  ->setUsername($this->config['user'])
-		  ->setPassword($this->config['password'])
+		$transport = \Swift_SmtpTransport::newInstance($config['smtp'], intval($config['port']), $config['protocole'])
+		  ->setUsername($config['user'])
+		  ->setPassword($config['password'])
 		  ->setStreamOptions(array('ssl' => array('allow_self_signed' => true, 'verify_peer' => false)))
 		  ;
 		  

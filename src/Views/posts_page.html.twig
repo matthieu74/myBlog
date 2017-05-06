@@ -27,9 +27,9 @@
 					<p> {{ post.chapo }} </p>
 					<br>
 					<p> {{ post.dateMaj|date("d/m/y") }} </p>
-					<a href="{{ asset('index.php/blog/view') }}/{{ post.id }}">more</a>
+					<a href="{{ asset('index.php/blog/view') }}/{{ post.id }}" class="btn btn-success btn-md">more</a>
 					
-					<a href="{{ asset('index.php/blog/delete') }}/{{ post.id }}">delete</a>
+					<a href="{{ asset('index.php/blog/delete') }}/{{ post.id }}" class="btn btn-success btn-md">delete</a>
 					<hr class="star-primary">
 				{% endfor %}
 				</div>

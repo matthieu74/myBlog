@@ -72,8 +72,10 @@ class BlogController extends Controller
 		$sendMailMessage = NULL;
 		if ($myForm->isSubmitted() && $myForm->isValid()) {
 			$bp->savePost($this->getDoctrine(),$postDetail);
-			$this->showDetailAction($idBlog);
-			return;
+            header('Location: ' . $this->getAssetPath() . '/index.php/blog/view/' . $idBlog);
+            return;
+			/*$this->showDetailAction($idBlog);
+			return;*/
 		}
 		
 		$myDescription = new PresentationService();
@@ -103,7 +105,8 @@ class BlogController extends Controller
 			$bp = new BlogPostService();
 			$postDetail = $myForm->getData();
 			$bp->savePost($this->getDoctrine(),$postDetail);
-			$this->showDetailAction($postDetail->getId());
+            header('Location: ' . $this->getAssetPath() . '/index.php/blog/view/' . $postDetail->getId());
+            return;
 		}
 		
 		$myDescription = new PresentationService();
@@ -133,6 +136,8 @@ class BlogController extends Controller
 		$sendMailMessage = NULL;
 		if ($myForm->isSubmitted() && $myForm->isValid()) {
 			$bp->deletePost($this->getDoctrine(),$postDetail);
+            header('Location: ' . $this->getAssetPath() . '/index.php/blogs');
+            return;
 			$this->showAction();
 			return;
 		}

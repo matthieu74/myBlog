@@ -1,5 +1,6 @@
 doctrine:
     dbname: 'myblog'
+    host: 'localhost'
     user: 'root'
     password: ''
 asset: 'http://localhost/myblog/web'

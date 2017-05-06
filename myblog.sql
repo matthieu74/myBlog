@@ -11,7 +11,7 @@ CREATE TABLE contact
 	message BLOB
 ) ENGINE = InnoDB;
 
-CREATE TABLE blogpost -- creation de la table type de statut de la personne
+CREATE TABLE blogpost 
 (
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	title VARCHAR(255) NOT NULL,
@@ -21,3 +21,42 @@ CREATE TABLE blogpost -- creation de la table type de statut de la personne
     textPost blob
 	
 ) ENGINE = InnoDB;
+
+CREATE TABLE blogpost_h
+(
+	id INT,
+	title VARCHAR(255) NOT NULL,
+	dateUpdate datetime not null,
+	chapo VARCHAR(255) NOT NULL,
+	author VARCHAR(255) NOT NULL,
+    textPost blob,
+	dateop datetime not null,
+	typeop char(1) not null
+	
+) ENGINE = InnoDB;
+
+DELIMITER //
+
+CREATE TRIGGER blogpost_before_update
+BEFORE update
+   ON blogpost FOR EACH ROW
+
+BEGIN
+
+   insert into blogpost_h (id, title, dateUpdate, chapo, author, textPost, dateop, typeop) 
+		select id, title, dateUpdate, chapo, author, textPost, NOW(), 'U' from blogpost where id = OLD.id;
+
+END; //
+
+CREATE TRIGGER blogpost_before_delete
+BEFORE delete
+   ON blogpost FOR EACH ROW
+
+BEGIN
+
+   insert into blogpost_h (id, title, dateUpdate, chapo, author, textPost,dateop, typeop) 
+		select id, title, dateUpdate, chapo, author, textPost, NOW(), 'D' from blogpost where id = OLD.id;
+
+END; //
+
+DELIMITER ;

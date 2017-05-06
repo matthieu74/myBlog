@@ -23,6 +23,7 @@ class Controller
         ));
         $dbParams = array(
             'driver'   => 'pdo_mysql',
+            'host'     => $config["doctrine"]["host"],
             'user'     => $config["doctrine"]["user"],
             'password' => $config["doctrine"]["password"],
             'dbname'   => $config["doctrine"]["dbname"],
@@ -39,6 +40,11 @@ class Controller
     protected function getDoctrine()
     {
         return $this->doctrine;
+    }
+    
+    protected function getAssetPath()
+    {
+        return $this->assetPath;
     }
 	
     //Twig template engine initialization function

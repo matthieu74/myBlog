@@ -1,8 +1,8 @@
-before working on this project, you need :  
-- to install TOMCAT APPACH, PHP 7 and MYSQL, the best way is to install WAMP or LAMP solution
+__before working on this project, you need:__  
+- to install TOMCAT APPACH, PHP 7 and MYSQL: the best way is to install WAMP or LAMP solution
 - to install COMPOSER
-- creating the database of the blog : use the sql script 'myblog.sql'
-- to install several php library, in the project directory run the following command : php composer.phar update
+- to create the database of the blog : use the sql script 'myblog.sql'
+- to install several php libraries, in the project directory run the following command : php composer.phar update
   
 __now you have to configure your project:__  
 *myBlog/app/config/Config.yml*  

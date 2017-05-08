@@ -22,6 +22,12 @@ class ContactService
 				->setFrom('peromatthieu@gmail.com')
 				->setTo('matthieu_pero@yahoo.fr')
 				->setBody($mailMessage); 
-		$sm->send($message);
+		try
+        {
+            $sm->send($message);
+        }
+        catch (Exception $e)
+        {
+        }
 	}
 }

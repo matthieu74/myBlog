@@ -22,7 +22,15 @@ class App
         $controller = new $controllerClass(Request::createFromGlobals(), self::loadConfig(), array_pop($route));
 		
 		array_shift($route); //supp the first element of the route array
-        call_user_func_array(array($controller,$actionMethod), $route);
+        try
+        {
+            call_user_func_array(array($controller,$actionMethod), $route);
+        }
+        catch (Exception $e)
+        {
+            $controller = new \Controllers\HomeController(Request::createFromGlobals(), self::loadConfig(), array_pop($route));
+            $controller->showOupsAction();
+        }
     }
 	
 	static private function loadConfig()

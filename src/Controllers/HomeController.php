@@ -57,5 +57,16 @@ class HomeController extends Controller
 		$this->renderTwig($twig, $templateFile, $array);
 		
 	}
+    
+    public function showOupsAction()
+	{
+		//Set up the twig engine
+        $twig = $this->initTwig();
+		$templateFile = 'oups_page.html.twig';
+		$myDescription = new PresentationService();
+		$array = array('profil' => $myDescription->getTwigArray(),);
+		$this->renderTwig($twig, $templateFile, $array);
+		
+	}
 }
 ?>

@@ -1,6 +1,6 @@
 before working on this project, you need :  
-- to install tomcat appach, php 7 and mysql, the best way is to install wamp or lamp solution
-- to install composer
+- to install TOMCAT APPACH, PHP 7 and MYSQL, the best way is to install WAMP or LAMP solution
+- to install COMPOSER
 - creating the database of the blog : use the sql script 'myblog.sql'
 - to install several php library, in the project directory run the following command : php composer.phar update
   

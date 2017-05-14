@@ -1,0 +1,5 @@
+smtp: 'smtp.gmail.com'
+port: 587
+protocole: 'tls'
+user: 'peromatthieu@gmail.com'
+password: ''

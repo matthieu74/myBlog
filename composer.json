@@ -1,0 +1,28 @@
+{
+	"autoload": {
+        "psr-4": {
+			"Controller\\": "src/Controllers/",
+            "Entity\\": "src/Models/Entities/",
+            "": "src/",
+            "Framework\\": "app/"
+        }
+    },
+    "require": {
+		"symfony/config": "^3.2",
+        "symfony/http-foundation": "^3.2",
+        "symfony/yaml": "^3.2",
+        "symfony/expression-language": "^3.2",
+        "symfony/dependency-injection": "^3.2",
+		"symfony/routing": "^3.2",
+		"twig/twig": "~2.3",
+		"symfony/form": "^3.2",
+        "symfony/validator": "^3.2",
+        "symfony/translation": "^3.2",
+        "symfony/twig-bridge": "^3.2",
+        "symfony/security-csrf": "^3.2",
+		"swiftmailer/swiftmailer": "~5.4",
+		"doctrine/orm": "^2.5.5",
+		"doctrine/annotations": "~1.0",
+        "doctrine/common": "~2.2"
+    }
+}

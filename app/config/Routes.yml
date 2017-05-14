@@ -1,0 +1,35 @@
+# Routes.yml
+home:
+    path: /
+    defaults: { _controller: 'HomeController::showAction' }
+    
+blog:
+    path: /blogs
+    defaults: { _controller: 'BlogController::showAction' }
+    
+blogPar5:
+    path: /blogs/{offset}
+    defaults: { _controller: 'BlogController::showBy5Action' }
+
+blogView:
+    path: /blog/view/{idblog}
+    defaults: { _controller: 'BlogController::showDetailAction' }
+
+
+blogEdit:
+    path: /blog/edit/{idblog}
+    defaults: { _controller: 'BlogController::editAction' }
+
+blogAdd:
+    path: /blog/add
+    defaults: { _controller: 'BlogController::addAction' }
+
+blogDelete:
+    path: /blog/delete/{idblog}
+    defaults: { _controller: 'BlogController::deleteAction' }
+
+pageNotFound:
+    path:  /{req}
+    defaults: { _controller: 'HomeController::show404Action' }
+    requirements:
+      req: ".+"

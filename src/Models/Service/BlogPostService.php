@@ -9,7 +9,8 @@ class BlogPostService
         $query = $em->createQueryBuilder();
         $query->select(array('b.id','b.title', 'b.dateUpdate', 'b.chapo'))
             ->from('Models\Entities\blogpost', 'b')
-            ->orderBy('b.dateUpdate', 'DESC');
+            ->orderBy('b.dateUpdate', 'DESC')
+             ->setMaxResults(5);
 		
 		return $query->getQuery()->getResult();
 	}
@@ -19,8 +20,9 @@ class BlogPostService
 		 $query = $em->createQueryBuilder();
         $query->select(array('b.id','b.title', 'b.dateUpdate', 'b.chapo'))
             ->from('Models\Entities\blogpost', 'b')
-            ->orderBy('b.dateUpdate', 'DESC');
-		
+            ->orderBy('b.dateUpdate', 'DESC')
+            ->setMaxResults(5)
+            ->setFirstResult($offset);
 		return $query->getQuery()->getResult();
 	}
 	

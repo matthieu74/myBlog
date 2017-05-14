@@ -34,6 +34,10 @@
 				{% endfor %}
 				</div>
             </div>
+            <div class="row">
+                <a href="{{ asset('index.php/blogs') }}/{{ oldestOffset }}" class="btn btn-success btn-md {{ oldestDisable }}">oldest</a>
+                <a href="{{ asset('index.php/blogs') }}/{{ newestOffset }}" class="btn btn-success btn-md {{ newestDisable }}">newest</a>
+            </div>
         </div>
     </section>
 {% endblock %}

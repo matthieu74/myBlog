@@ -21,12 +21,22 @@ class BlogController extends Controller
 		
 		$bp = new BlogPostService();
 		$blogPosts = $bp->getAllPosts($this->getDoctrine());
-		
+		$oldestDisable = '';
+        $newestDisable = 'disabled';
+        if (count($blogPosts) < 5) 
+        {
+            $oldestDisable = 'disabled';
+        }
+        
 		$myDescription = new PresentationService();
 		$array = array('profil' => $myDescription->getTwigArray(),
 						'title' => 'visit my blog',
 						'blogPosts' => $blogPosts,
-					   	'modeBlog' => 1
+					   	'modeBlog' => 1,
+                        'oldestOffset' => 1,
+                        'newestOffset' => 0,
+                        'oldestDisable' => $oldestDisable,
+                        'newestDisable' => $newestDisable
 						);
 		
 		$templateFile = 'posts_page.html.twig';
@@ -36,22 +46,39 @@ class BlogController extends Controller
     
     public function showBy5Action($offset)
     {
+        $firstRow = intval($offset) * 5;
 		//Set up the twig engine
         $twig = $this->initTwig();
 		
 		$bp = new BlogPostService();
-		$blogPosts = $bp->getAllBy5Posts($this->getDoctrine(), $offset);
+		$blogPosts = $bp->getAllBy5Posts($this->getDoctrine(), $firstRow);
 		
+		$oldestDisable = '';
+        $newestDisable = '';
+        if ($offset == 0)
+        {
+            $newestDisable = 'disabled';   
+        }
+        
+        if (count($blogPosts) < 5) 
+        {
+            $oldestDisable = 'disabled';
+        }
+        
+        $oldestOffset = $offset + 1;
+        $newestOffset = $offset - 1;
 		$myDescription = new PresentationService();
 		$array = array('profil' => $myDescription->getTwigArray(),
 						'title' => 'visit my blog',
 						'blogPosts' => $blogPosts,
-					   	'modeBlog' => 1
+					   	'modeBlog' => 1,
+                        'oldestOffset' => $oldestOffset,
+                        'newestOffset' => $newestOffset,
+                        'oldestDisable' => $oldestDisable,
+                        'newestDisable' => $newestDisable
 						);
-		
 		$templateFile = 'posts_page.html.twig';
 		$this->renderTwig($twig, $templateFile, $array);
-		
 	}
     
 	public function showDetailAction($idBlog)

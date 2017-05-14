@@ -6,6 +6,10 @@ home:
 blog:
     path: /blogs
     defaults: { _controller: 'BlogController::showAction' }
+    
+blogPar5:
+    path: /blogs/{offset}
+    defaults: { _controller: 'BlogController::showBy5Action' }
 
 blogView:
     path: /blog/view/{idblog}

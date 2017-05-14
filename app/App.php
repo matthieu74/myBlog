@@ -17,7 +17,7 @@ class App
         $route = self::getRoute();
         list($controllerClass,$actionMethod) = explode("::",$route["_controller"]);
 		
-        $controllerClass = "\Controllers\\".$controllerClass;
+        $controllerClass = "\controllers\\".$controllerClass;
 		
         $controller = new $controllerClass(Request::createFromGlobals(), self::loadConfig(), array_pop($route));
 		

@@ -52,7 +52,7 @@ class Controller
 	{
 		$twig_bridge_dir = realpath(__DIR__ . '/../vendor/twig-bridge/Resources/views/Form');
 		$loader = new \Twig_Loader_Filesystem(array(
-            realpath(__DIR__ . '/../src/Views'),
+            realpath(__DIR__ . '/../src/views'),
             $twig_bridge_dir,
         ));
 		$twig = new \Twig_Environment($loader, array('debug' => true));

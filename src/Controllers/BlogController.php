@@ -33,7 +33,27 @@ class BlogController extends Controller
 		$this->renderTwig($twig, $templateFile, $array);
 		
 	}
-
+    
+    public function showBy5Action($offset)
+    {
+		//Set up the twig engine
+        $twig = $this->initTwig();
+		
+		$bp = new BlogPostService();
+		$blogPosts = $bp->getAllBy5Posts($this->getDoctrine(), $offset);
+		
+		$myDescription = new PresentationService();
+		$array = array('profil' => $myDescription->getTwigArray(),
+						'title' => 'visit my blog',
+						'blogPosts' => $blogPosts,
+					   	'modeBlog' => 1
+						);
+		
+		$templateFile = 'posts_page.html.twig';
+		$this->renderTwig($twig, $templateFile, $array);
+		
+	}
+    
 	public function showDetailAction($idBlog)
 	{
 		//Set up the twig engine

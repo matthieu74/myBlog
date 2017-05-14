@@ -6,9 +6,22 @@ class BlogPostService
 {
 	public function getAllPosts($em)
 	{
-		$query = $em->createQuery('SELECT b.id,b.title, b.dateUpdate, b.chapo FROM Models\Entities\blogpost b order by b.dateUpdate desc');
-		return $query->getResult();
+        $query = $em->createQueryBuilder();
+        $query->select(array('b.id','b.title', 'b.dateUpdate', 'b.chapo'))
+            ->from('Models\Entities\blogpost', 'b')
+            ->orderBy('b.dateUpdate', 'DESC');
 		
+		return $query->getQuery()->getResult();
+	}
+    
+    public function getAllBy5Posts($em,$offset)
+    {
+		 $query = $em->createQueryBuilder();
+        $query->select(array('b.id','b.title', 'b.dateUpdate', 'b.chapo'))
+            ->from('Models\Entities\blogpost', 'b')
+            ->orderBy('b.dateUpdate', 'DESC');
+		
+		return $query->getQuery()->getResult();
 	}
 	
 	public function getPostDetail($em,$idBlog)

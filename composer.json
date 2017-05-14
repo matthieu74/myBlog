@@ -1,8 +1,8 @@
 {
 	"autoload": {
         "psr-4": {
-			"Controller\\": "src/controllers/",
-            "Entity\\": "src/entities/",
+			"Controller\\": "src/Controllers/",
+            "Entity\\": "src/Models/Entities/",
             "": "src/",
             "Framework\\": "app/"
         }

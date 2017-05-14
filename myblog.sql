@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS myblog ; -- Supprimer la base de données  projet4_Matthieu_Pero
-CREATE DATABASE myblog ; -- Créer la base de données : projet4_Matthieu_Pero
-USE myblog ; -- Indique la BDD à utiliser et dans laquelle on exécute les requêtes.
+DROP DATABASE IF EXISTS rmu25001 ; -- Supprimer la base de données  projet4_Matthieu_Pero
+CREATE DATABASE rmu25001 ; -- Créer la base de données : projet4_Matthieu_Pero
+USE rmu25001 ; -- Indique la BDD à utiliser et dans laquelle on exécute les requêtes.
 
 
 CREATE TABLE contact

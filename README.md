@@ -1,10 +1,10 @@
-__before working on this project, you need:__  
+# Before working on this project, you need:  
 - to install TOMCAT APPACH, PHP 7 and MYSQL: the best way is to install WAMP or LAMP solution
 - to install COMPOSER
 - to create the database of the blog : use the sql script 'myblog.sql'
 - to install several php libraries, in the project directory run the following command : php composer.phar update
 
-__How to configure virtual hosts on your localhost__
+# How to configure virtual hosts on your localhost
 we will create a virtual host under the name: "myBlog.dev"
 - in the repository *C:\Windows\System32\drivers\etc*; open “hosts” file with admin privileges and add the following to its end;
 127.0.0.1 *myblog.dev* 
@@ -22,7 +22,7 @@ Require local
 </VirtualHost>  
   
   
-__now you have to configure your project:__  
+# now you have to configure your project:  
 *myBlog/app/config/Config.yml*  
 doctrine:  
 host: 'localhost' #mysql host address  

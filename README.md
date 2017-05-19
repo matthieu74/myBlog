@@ -8,19 +8,19 @@ __How to configure virtual hosts on your localhost__
 we will create a virtual host under the name: "myBlog.dev"
 - in the repository *C:\Windows\System32\drivers\etc*; open “hosts” file with admin privileges and add the following to its end;
 127.0.0.1 *myblog.dev* 
-- allow virtual hosts in httpd.conf
--- ckick on wamp tray icon and Apache->httpd.conf
--- search for *# Include conf/extra/httpd-vhosts.conf* and comment it out (by deleting the # caracter): *Include conf/extra/httpd-vhosts.conf*
--- then at the bottom of the file add the *myBlog* project like this:
-<VirtualHost *:80>
-DocumentRoot "d:/projects/myBlog"
-ServerName zaintest
-<Directory "d:/projects/myBlog">
-AllowOverride All
-Require local
-</Directory>
-</VirtualHost>
-
+- allow virtual hosts in httpd.conf  
+-- ckick on wamp tray icon and Apache->httpd.conf  
+-- search for *# Include conf/extra/httpd-vhosts.conf* and comment it out (by deleting the # caracter): *Include conf/extra/httpd-vhosts.conf*  
+-- then at the bottom of the file add the *myBlog* project like this:  
+<VirtualHost *:80>  
+DocumentRoot "d:/projects/myBlog"  
+ServerName zaintest  
+<Directory "d:/projects/myBlog">  
+AllowOverride All  
+Require local  
+</Directory>  
+</VirtualHost>  
+  
   
 __now you have to configure your project:__  
 *myBlog/app/config/Config.yml*  

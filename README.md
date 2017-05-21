@@ -9,9 +9,9 @@
 - in the repository *C:\Windows\System32\drivers\etc*; open “hosts” file with admin privileges and add the following to its end;
 127.0.0.1 *myblog.dev* 
 ## 2.  allow virtual hosts in httpd.conf  
--- ckick on wamp tray icon and Apache->httpd.conf  
--- search for *# Include conf/extra/httpd-vhosts.conf* and comment it out (by deleting the # caracter): *Include conf/extra/httpd-vhosts.conf*  
--- then at the bottom of the file add the *myBlog* project like this:  
+- ckick on wamp tray icon and Apache->httpd.conf  
+-search for *# Include conf/extra/httpd-vhosts.conf* and comment it out (by deleting the # caracter): *Include conf/extra/httpd-vhosts.conf*  
+- then at the bottom of the file add the *myBlog* project like this:  
 ```
 <VirtualHost monprojet.dev>
 	DocumentRoot C:/web/myproject/web/
@@ -22,7 +22,7 @@
 	ServerName localhost
 </VirtualHost>
 ```
-  
+- and restart the wamp services
   
 # now you have to configure your project:  
 *myBlog/app/config/Config.yml*  

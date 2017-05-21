@@ -12,14 +12,15 @@
 -- ckick on wamp tray icon and Apache->httpd.conf  
 -- search for *# Include conf/extra/httpd-vhosts.conf* and comment it out (by deleting the # caracter): *Include conf/extra/httpd-vhosts.conf*  
 -- then at the bottom of the file add the *myBlog* project like this:  
-<VirtualHost *:80>  
-DocumentRoot "d:/projects/myBlog"  
-ServerName zaintest  
-<Directory "d:/projects/myBlog">  
-AllowOverride All  
-Require local  
-</Directory>  
-</VirtualHost>  
+<VirtualHost monprojet.dev>
+	DocumentRoot C:/wamp/www/mon-projet/web/
+	ServerName monprojet.dev
+</VirtualHost>
+
+<VirtualHost localhost>
+	DocumentRoot C:/wamp/www/
+	ServerName localhost
+</VirtualHost>
   
   
 # now you have to configure your project:  

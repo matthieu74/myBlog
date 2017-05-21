@@ -13,13 +13,23 @@
 -search for *# Include conf/extra/httpd-vhosts.conf* and comment it out (by deleting the # caracter): *Include conf/extra/httpd-vhosts.conf*  
 - then at the bottom of the file add the *myBlog* project like this:  
 ```
-<VirtualHost monprojet.dev>
-	DocumentRoot C:/web/myproject/web/
-	ServerName monprojet.dev
-</VirtualHost>
-<VirtualHost localhost>
-	DocumentRoot C:/wamp/www/
+<VirtualHost *:80>
 	ServerName localhost
+	DocumentRoot c:/wamp64/www
+	<Directory  "c:/wamp64/www/">
+		Options +Indexes +Includes +FollowSymLinks +MultiViews
+		AllowOverride All
+		Require local
+	</Directory>
+</VirtualHost>
+<VirtualHost *:80>
+	ServerName myblog.dev
+	DocumentRoot C:/web/myBlog/web
+	<Directory  "C:/web/myBlog/web/">
+		Options +Indexes +Includes +FollowSymLinks +MultiViews
+		AllowOverride All
+		Require local
+	</Directory>
 </VirtualHost>
 ```
 - and restart the wamp services
